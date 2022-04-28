@@ -1,5 +1,7 @@
 package com.pudo.lockers.web.model;
 
+import java.util.Date;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,6 +23,7 @@ public class Terminal {
     private String horario;
     private String contactoLocal;
     private String contactoSup;
+    private Date fechaInstalacion;
     private String estatus;
     private String red;
     
@@ -109,7 +112,12 @@ public class Terminal {
 	public void setRed(String red) {
 		this.red = red;
 	}
-	
+	public Date getFechaInstalacion() {
+		return fechaInstalacion;
+	}
+	public void setFechaInstalacion(Date fechaInstalacion) {
+		this.fechaInstalacion = fechaInstalacion;
+	}
 	
 	@Override
 	public String toString() {

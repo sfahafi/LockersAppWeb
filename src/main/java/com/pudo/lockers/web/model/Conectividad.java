@@ -16,6 +16,8 @@ public class Conectividad {
     
     private String internet;
     private String Fuente;
+    private String macModem;
+    private String snModem;
     private String chipCompani;
     private String chipNumero;
     private String idTeamviewer;
@@ -81,6 +83,19 @@ public class Conectividad {
 	}
 	public void setCodigoDvr(String codigoDvr) {
 		this.codigoDvr = codigoDvr;
+	}
+	
+	public String getMacModem() {
+		return macModem;
+	}
+	public void setMacModem(String macModem) {
+		this.macModem = macModem;
+	}
+	public String getSnModem() {
+		return snModem;
+	}
+	public void setSnModem(String snModem) {
+		this.snModem = snModem;
 	}
 	
 	
