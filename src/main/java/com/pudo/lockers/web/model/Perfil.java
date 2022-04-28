@@ -11,7 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Perfiles")
+@Table(name="perfiles")
 public class Perfil {
 	
 	@Id
@@ -22,7 +22,7 @@ public class Perfil {
 
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "UsuarioPerfil", // tabla intermedia
+	@JoinTable(name = "usuarioPerfil", // tabla intermedia
 			joinColumns = @JoinColumn(name = "idPerfil"), 
 			inverseJoinColumns = @JoinColumn(name = "idUsuario") 
 	)
