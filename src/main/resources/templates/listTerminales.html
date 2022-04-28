@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>EmpleosApp | Aplicación para publicar Ofertas de Trabajo.</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+
+		<nav class="navbar navbar-expand-lg navbar-dark bg-secondary " id="main_navbar">
+		
+		    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		        <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <span>
+		        <img class="logopudomenu" src="/Content/images/logo-pudo-alt.png" width="40" />
+		        <a id="pudotitle" class="navbar-brand text-warning" href="../Home/Index">Pudo O&M</a>
+		    </span>
+		
+		
+		    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		        <ul class="navbar-nav mr-auto">
+		                        <li class="nav-item dropdown">
+		                            <a class="nav-link dropdown-toggle text-warning" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                                Couriers
+		                            </a>
+		
+		                            <ul class="dropdown-menu animated fadeIn bg-secondary" aria-labelledby="navbarDropdown">
+		                                        <li><a class="dropdown-item text-warning bg-secondary" href=/ReserveParcel/CreateParcelFirstTime>Ingresar paquete</a></li>
+		                                        <li><a class="dropdown-item text-warning bg-secondary" href=/CourierReservation/CourierReservationFirstTime>Reservar</a></li>
+		                                        <li><a class="dropdown-item text-warning bg-secondary" href=/InsuranceTypeList/Index>Tipos de seguro</a></li>
+		                            </ul>
+		                        </li>
+		                        <li class="nav-item dropdown">
+		                            <a class="nav-link dropdown-toggle text-warning" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                                Usuario Final
+		                            </a>
+		                            <ul class="dropdown-menu animated fadeIn bg-secondary" aria-labelledby="navbarDropdown">
+		                                        <li class="nav-item dropdown">
+		                                            <a class="dropdown-item dropdown-toggle text-warning bg-secondary" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                                                Pudo Entrega
+		                                            </a>
+		                                            <ul class="dropdown-menu animated fadeIn bg-secondary" aria-labelledby="navbarDropdown1">
+		                                                    <li>
+		                                                        <a class="dropdown-item text-warning bg-secondary" href="/PudoEntregaParcel/CreateParcelFirstTime">Ingresar Paquete</a>
+		                                                    </li>
+		                                                    <li>
+		                                                        <a class="dropdown-item text-warning bg-secondary" href="/PudoEntregaParcel/Index">Listado</a>
+		                                                    </li>
+		                                            </ul>
+		                                        </li>
+		                            </ul>
+		                        </li>
+		                        <li class="nav-item dropdown">
+		                            <a class="nav-link dropdown-toggle text-warning" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                                Paquetes
+		                            </a>
+		
+		                            <ul class="dropdown-menu animated fadeIn bg-secondary" aria-labelledby="navbarDropdown">
+		                                        <li><a class="dropdown-item text-warning bg-secondary" href=/Tracking/Index>Seguimiento</a></li>
+		                                        <li><a class="dropdown-item text-warning bg-secondary" href=/CourierParcel/Index>Listado</a></li>
+		                                        <li><a class="dropdown-item text-warning bg-secondary" href=/CourierParcelForward/Index>A Trasladar</a></li>
+		                                        <li class="nav-item dropdown">
+		                                            <a class="dropdown-item dropdown-toggle text-warning bg-secondary" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                                                Pendientes
+		                                            </a>
+		                                            <ul class="dropdown-menu animated fadeIn bg-secondary" aria-labelledby="navbarDropdown1">
+		                                                    <li>
+		                                                        <a class="dropdown-item text-warning bg-secondary" href="/ParcelRevision/Index">Buscar por c&#243;digo</a>
+		                                                    </li>
+		                                                    <li>
+		                                                        <a class="dropdown-item text-warning bg-secondary" href="/ReservedPackages/Index">Buscar por fechas</a>
+		                                                    </li>
+		                                            </ul>
+		                                        </li>
+		                                        <li><a class="dropdown-item text-warning bg-secondary" href=/AbandonedPackages/Index>Abandonados</a></li>
+		                                        <li><a class="dropdown-item text-warning bg-secondary" href=/CancelledPackages/Index>Retiro Cancelados</a></li>
+		                                        <li><a class="dropdown-item text-warning bg-secondary" href=/DeliveryLots/Index>Lotes de Salida</a></li>
+		                            </ul>
+		                        </li>
+		                        <li class="nav-item dropdown">
+		                            <a class="nav-link dropdown-toggle text-warning" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                                Reservas
+		                            </a>
+		                            <ul class="dropdown-menu animated fadeIn bg-secondary" aria-labelledby="navbarDropdown">
+		                                        <li><a class="dropdown-item text-warning bg-secondary" href=/Reservation/Index>Listado</a></li>
+		                            </ul>
+		                        </li>
+		                        <li class="nav-item dropdown">
+		                            <a class="nav-link dropdown-toggle text-warning" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                                ECommerce
+		                            </a>
+		                            <ul class="dropdown-menu animated fadeIn bg-secondary" aria-labelledby="navbarDropdown">
+		                                        <li class="nav-item dropdown">
+		                                            <a class="dropdown-item dropdown-toggle text-warning bg-secondary" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                                                Ordenes Canceladas
+		                                            </a>
+		                                            <ul class="dropdown-menu animated fadeIn bg-secondary" aria-labelledby="navbarDropdown1">
+		                                                    <li>
+		                                                        <a class="dropdown-item text-warning bg-secondary" href="/ECommerce/CancelledOrders">Ver</a>
+		                                                    </li>
+		                                            </ul>
+		                                        </li>
+		                            </ul>
+		                        </li>
+		                        <li class="nav-item dropdown">
+		                            <a class="nav-link dropdown-toggle text-warning" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                                Administrar
+		                            </a>
+		
+		                            <ul class="dropdown-menu animated fadeIn bg-secondary" aria-labelledby="navbarDropdown">
+		                                        <li class="nav-item dropdown">
+		                                            <a class="dropdown-item dropdown-toggle text-warning bg-secondary" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                                                Lockers
+		                                            </a>
+		                                            <ul class="dropdown-menu animated fadeIn bg-secondary" aria-labelledby="navbarDropdown1">
+		                                                    <li>
+		                                                        <a class="dropdown-item text-warning bg-secondary" href="/LockerManager/Index">Ver Listado</a>
+		                                                    </li>
+		                                                    <li>
+		                                                        <a class="dropdown-item text-warning bg-secondary" href="/LockerMonitor/Index">Monitoreo</a>
+		                                                    </li>
+		                                                    <li>
+		                                                        <a class="dropdown-item text-warning bg-secondary" href="/LockerManager/IndexLockerMessage">Ver Mensajes de Locker</a>
+		                                                    </li>
+		                                            </ul>
+		                                        </li>
+		                                        <li class="nav-item dropdown">
+		                                            <a class="dropdown-item dropdown-toggle text-warning bg-secondary" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                                                Dep&#243;sitos
+		                                            </a>
+		                                            <ul class="dropdown-menu animated fadeIn bg-secondary" aria-labelledby="navbarDropdown1">
+		                                                    <li>
+		                                                        <a class="dropdown-item text-warning bg-secondary" href="/Warehouse/IndexCourierWarehouse">Dep&#243;sitos - Courier</a>
+		                                                    </li>
+		                                            </ul>
+		                                        </li>
+		                                        <li><a class="dropdown-item text-warning bg-secondary" href=/Groups/Index>Grupos</a></li>
+		                                        <li class="nav-item dropdown">
+		                                            <a class="dropdown-item dropdown-toggle text-warning bg-secondary" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                                                T&#233;cnicos
+		                                            </a>
+		                                            <ul class="dropdown-menu animated fadeIn bg-secondary" aria-labelledby="navbarDropdown1">
+		                                                    <li>
+		                                                        <a class="dropdown-item text-warning bg-secondary" href="/Technicians/Index">Ver</a>
+		                                                    </li>
+		                                                    <li>
+		                                                        <a class="dropdown-item text-warning bg-secondary" href="/Technicians/TechnicianPassword">Cambiar contrase&#241;a</a>
+		                                                    </li>
+		                                            </ul>
+		                                        </li>
+		                            </ul>
+		                        </li>
+		                        <li class="nav-item dropdown">
+		                            <a class="nav-link dropdown-toggle text-warning" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                                Log&#237;stica
+		                            </a>
+		                            <ul class="dropdown-menu animated fadeIn bg-secondary" aria-labelledby="navbarDropdown">
+		                                        <li class="nav-item dropdown">
+		                                            <a class="dropdown-item dropdown-toggle text-warning bg-secondary" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                                                Circuitos
+		                                            </a>
+		                                            <ul class="dropdown-menu animated fadeIn bg-secondary" aria-labelledby="navbarDropdown1">
+		                                                    <li>
+		                                                        <a class="dropdown-item text-warning bg-secondary" href="/Logistics/Index">Ver</a>
+		                                                    </li>
+		                                            </ul>
+		                                        </li>
+		                            </ul>
+		                        </li>
+		
+		        </ul>
+		    </div>
+		    
+		    <input id="h_UserPudoWarehouse_LockerManager" type="hidden" />
+		        <div class="dropdown">
+		            <button class="btn btn-outline-warning dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                <i class="fas fa-user"></i> sfahafi
+		            </button>
+		            <div class="dropdown-menu dropdown-menu-right animated fadeIn bg-warning" aria-labelledby="dropdownMenu2">
+		                <button class="dropdown-item bg-warning " type="button" onclick="changePassword();"><i class="fas fa-key"></i> Cambiar contraseña</button>
+		                <button class="dropdown-item bg-warning" type="button" onclick="signOut();"><i class="fas fa-sign-in-alt"></i> Salir</button>
+		            </div>
+		        </div>
+		
+		</nav>
+		
+		
+		
+		
+		    </div>
+		</header>
+		<br/>
+		<div class="container-fluid">
+		    
+		
+		
+		
+		<link href="/Content/ui.jqgrid-bootstrap4.css" rel="stylesheet"/>
+		<link href="/Content/octicons.css" rel="stylesheet"/>
+		
+		<link href="/Content/custom-css/svg-icon.css" rel="stylesheet"/>
+		
+		
+		
+		<input id="modificaLockers" name="modificaLockers" type="hidden" value="True" />
+		<input id="modificaPuertas" name="modificaPuertas" type="hidden" value="True" />
+		<section class="container-fluid">
+		    <h2>Administrar › Lockers</h2>
+		    <hr />
+		    <div class="card">
+		        <div class="card-body bg-light">
+		            <div class="form-group row">
+		                <div class='col-12'>
+		                    <div class="form-inline ">
+		                        <div class="input-group">
+		                            <div id="someid" data-name="True"></div>
+		                            <input class="form-control" id="nombre" name="nombre" placeholder="Buscar locker" type="text" value="" />
+		                            <div class="input-group-append">
+		                                <button class="btn btn-outline-info" type="button" onclick="loadGrid($('#nombre').val())" title="Buscar" data_toggle="tooltip"><span class="fa fa-search"></span></button>
+		                                <button class="btn btn-outline-info" type="button" onclick="loadGrid('')" title="Ver todos" data_toggle="tooltip"><span class="fa fa-list"></span></button>
+		                            </div>
+		
+		                        </div>
+		
+		                    </div>
+		                </div>
+		            </div>
+		            <div class="row">
+		                <table id="grid"></table>
+		                <div id="gridpager"></div>
+		            </div>
+		        </div>
+		    </div>
+		
+		
+		</section>
+		
+		
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUW-PExHhRUoKxveymlwudEtqWlvyyZP0" ></script>
+		</div>
+		<footer class="footer text-center bg-secondary">
+		    <span class="text-warning ">&copy; 2022 - Pudo Argentina</span>
+		    
+		</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+  </body>
+</html>

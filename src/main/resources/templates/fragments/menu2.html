@@ -1,0 +1,62 @@
+<nav th:fragment="menu-principal"
+	class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+	
+	<a class="navbar-brand" th:href="@{/}">Portal de Empleos</a>
+	
+	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
+				<a class="nav-link" th:href="@{/solicitudes/index}">Solicitudes</a>
+			</li>
+			<li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
+				<a class="nav-link" th:href="@{/vacantes/index}">Vacantes</a>
+			</li>
+			<li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
+				<a class="nav-link" th:href="@{/categorias/index}">Categorias</a>
+			</li>
+			<li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
+				<a class="nav-link" th:href="@{/usuarios/index}">Usuarios</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/about}">Acerca</a>
+			</li>
+		</ul>
+		
+		<div sec:authorize="isAnonymous()">
+			<a class="btn btn-primary" th:href="@{/index}">Ingresar</a>
+			<a class="btn btn-primary" th:href="@{/signup}">Registrarse</a>&nbsp;
+		</div>
+		
+		<!--
+		<a class="btn btn-primary" th:href="@{/index}">Ingresar</a>&nbsp; 
+		<a class="btn btn-primary" th:href="@{/signup}">Registrarse</a>&nbsp; 
+		<a class="btn btn-primary" th:href="@{/logout}">Salir</a>&nbsp; -->			
+			
+			
+		<div sec:authorize="isAuthenticated()">
+			<button class="btn btn-primary dropdown-toggle" type="button"
+				id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false">
+				
+				<i class="fas fa-user"></i>
+				<span th:if="${session.usuario != null}" th:text="${session.usuario.username}" class="text-light">
+				
+			</button>
+			
+		<div class="dropdown-menu dropdown-menu-right animated fadeIn bg-primary" aria-labelledby="dropdownMenu2">
+				
+			<a class="dropdown-item bg-primary text-light" type="button" onclick="signOut();" href="#">
+				<i class="fas fa-key"></i> Cambiar contrase&ntilde;a
+			</a>
+				
+			<a class="dropdown-item bg-primary text-light" type="button" onclick="signOut();" th:href="@{/logout}">
+				<i class="fas fa-sign-in-alt"></i> Salir
+			</a>
+				
+		</div>
+		</div>
+		</div>
+
+
+	</div>
+</nav>
