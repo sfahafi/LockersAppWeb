@@ -1,0 +1,139 @@
+use lockersdb;
+
+DROP TABLE IF EXISTS perfiles;
+CREATE TABLE perfiles (
+  id int NOT NULL AUTO_INCREMENT,
+  perfil varchar(100) NOT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS usuarios;
+CREATE TABLE usuarios (
+  id int NOT NULL AUTO_INCREMENT,
+  nombre varchar(45) NOT NULL,
+  email varchar(100) NOT NULL,
+  username varchar(45) NOT NULL,
+  passwords varchar(100) NOT NULL,
+  estatus int NOT NULL DEFAULT '1',
+  fechaRegistro date DEFAULT NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY username_UNIQUE (username),
+  UNIQUE KEY email_UNIQUE (email)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS usuarioPerfil;
+CREATE TABLE usuarioPerfil (
+  idUsuario int NOT NULL,
+  idPerfil int NOT NULL,
+  UNIQUE KEY Usuario_Perfil_UNIQUE (idUsuario,idPerfil),
+  KEY fk_Usuarios1_idx (idUsuario),
+  KEY fk_Perfiles1_idx (idPerfil),
+  CONSTRAINT fk_Usuarios1 FOREIGN KEY (idUsuario) REFERENCES Usuarios (id),
+  CONSTRAINT fk_Perfiles1 FOREIGN KEY (idPerfil) REFERENCES Perfiles (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+alter table conectividades 
+    add constraint fk_conectividades_terminales
+    foreign key(idTerminal)
+    references terminales(id);
+
+-- ------------------------------------------------------------------------------------
+
+-- ALTER TABLE modulos CHANGE COLUMN idModulo id int;
+
+drop table if exists modulos;
+create table modulos(
+    id int auto_increment primary key,
+    idTerminal int not null,
+    modelo varchar(25),
+    nSerie varchar(25),
+    tipo enum('AT_CT','AT_HT','Modulo') not null,
+    nBoxes int not null,
+    apertura enum('left','right')
+);
+
+-- nBoxes enum('AT2','M3','M7','M9','AT16','M20','M22'),
+
+drop table if exists terminales;
+create table terminales(
+    id int auto_increment primary key,
+    nombrePc varchar(50) not null,
+    tipo enum('CT','HT','Stock','Test','Desarmadas'),
+    configuracion varchar(50),
+    nBoxes int not null,
+	nombreLocacion varchar(100) not null,
+    direccion varchar(100) not null,
+    localidad enum('CABA','Norte','Sur','Oeste','Cordoba','Neuquen','Stock_Caba','Stock_Cordoba','Stock_Neuquen') not null,
+    cp varchar(50) not null,
+    horario varchar(100) not null,
+    fechaInstalacion date not null,
+    contactoLocal varchar(50),
+    contactoSup varchar(50),
+    estatus enum('Activo','Mantenimiento','Desactivado','Desinstalado'),
+    red enum('Buenos_Aires','Cordoba','Neuquen')
+);
+
+drop table if exists historicos;
+create table historicos(
+    id int auto_increment primary key,
+    idTerminal int not null,
+    tipo enum ('Falla','Mudanza') not null,
+    fechaReporte date not null,
+    reporte text not null,
+    solucuion text,
+    fechaSolucion date,
+    estatus enum('Pendiente','Resuelto') not null
+);
+
+drop table if exists conectividades;
+create table conectividades(
+    id int auto_increment primary key,
+    idTerminal int not null,
+    internet enum ('Wifi','Cable','Sin_Conecion','Telecentro','Fibertel') not null,
+    Fuente enum ('Local','Propia') not null,
+    chipCompani enum ('Movistar_4G','Personal','Claro') not null,
+    chipNumero varchar(50) not null,
+    macModem varchar(50),
+    snModem varchar(50),
+    idTeamviewer varchar(50),
+    serialRouter varchar(50),
+    serialDvr varchar(50),
+    codigoDvr varchar(50)
+);
+
+drop table if exists puertasBloqueadas;
+create table puertasBloqueadas(
+    id int auto_increment primary key,
+    idTerminal int not null,
+    puerta int not null,
+    fecha date not null,
+    descripcion text not null,
+    descripcionTecnica text,
+    fechaTecnica date,
+    estatus enum('Pendiente','Resuelto','Sin_Solucion') not null
+);
+
+alter table modulos 
+    add constraint fk_modulos_terminales
+    foreign key(idTerminal)
+    references terminales(id);
+    
+alter table conectividades 
+    add constraint fk_conectividades_terminales
+    foreign key(idTerminal)
+    references terminales(id);
+    
+alter table historicos 
+    add constraint fk_historicos_terminales
+    foreign key(idTerminal)
+    references terminales(id);
+    
+alter table puertasBloqueadas 
+    add constraint fk_puertasBloqueadas_terminales
+    foreign key(idTerminal)
+    references terminales(id);
+
+-- alter table terminales 
+   -- add constraint fk_terminales_ubicaciones
+   -- foreign key(idUbicacion)
+   -- references ubicaciones(idUbicacion);
