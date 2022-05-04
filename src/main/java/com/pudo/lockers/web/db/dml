@@ -1,0 +1,23 @@
+insert into modulos(idTerminal, modelo, nSerie, tipo, nBoxes, apertura) values
+    (2,'HLD_F_Z_030_09','ESP201804Z034','AT_HT',16,'left'),
+    (3,'HLD_F_Z_030_09','ESP201804Z073','AT_HT',16,'left'),
+    (4,'HLD_F_Z_030_06RC','ESP201702Z011','AT_CT',2,'left'),
+    (4,'HLD_F_Z_030_06RC','ESP201702F037','Modulo',9,'left'),
+    (4,'HLD_F_Z_030_06RC','ESP201702F067','Modulo',7,'right'),    
+    (4,'HLD_F_Z_030_06RC','ESP201702F149','Modulo',22,'left'),
+    (4,'HLD_F_Z_030_06RC','ESP201702F185','Modulo',22,'right'),
+    (1,'HLD_F_Z_030_09','sn','AT_HT',16,'left'),
+    (1,'HLD_F_Z_030_09','sn','AT_HT',16,'left'),
+    (1,'HLD_F_Z_030_09','sn','AT_HT',16,'left');
+
+insert into terminales(id, nombrePc, tipo, configuracion, nBoxes, nombreLocacion, 
+direccion, localidad, cp, horario, fechaInstalacion, contactoLocal, contactoSup, 
+estatus, red) values
+    (1,'Deposito','Stock','new',1,'Pudo','Argentina','Stock_Caba','CP','24HS','2017-09-01','Planta','Planta','Desinstalado','Buenos_Aires'),
+    (2,'054HT1600000001','HT','HT',16,'Kiosco Cartu','Gurruchaga 796','CABA','1414','24Hs','2020-14-01','11-7072-5479','11-6823-0610','Activo','Buenos_Aires'),
+    (3,'054HT1600000004','HT','HT',16,'OPEN25 L145','Av. Cordoba 315','CABA','1054','24Hs','2018-22-08','SN','11-3376-6407 ','Activo','Buenos_Aires'),
+    (4,'054PUDOPNX00005','CT','D',62,'Axion Energy','Av. Cordoba 5653','CABA','1414','24Hs','2019-05-06','4771-0300','15-2844-9764','Activo','Buenos_Aires');
+    
+select * from terminales;
+
+select * from modulos;
