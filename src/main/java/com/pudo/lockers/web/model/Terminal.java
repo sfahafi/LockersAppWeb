@@ -23,7 +23,10 @@ public class Terminal {
     private String horario;
     private String contactoLocal;
     private String contactoSup;
+    
+    @Temporal(TemporalType.DATE)
     private Date fechaInstalacion;
+    
     private String estatus;
     private String red;
     
