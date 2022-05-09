@@ -29,7 +29,7 @@
         <div class="card">
           <h4 class="card-header"><strong>Datos del equipo</strong></h4>              
           <div class="card-body">
-            <form th:action="@{/vacantes/save}" method="post" th:object="${vacante}" enctype="multipart/form-data"> <!-- th:object="${vacante}" se agrega para poder manejar los errores -->
+            <form th:action="@{/terminales/save}" method="post" th:object="${vacante}" > <!-- th:object="${vacante}" se agrega para poder manejar los errores -->
               
               <!-- En este div se capturan los errores y se muestran al usuario en la interfaz -->
               <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role="alert">
@@ -47,7 +47,7 @@
                     <input type="text" class="form-control" th:field="*{nombrePc}" id="nombrePc" name="nombrePc" placeholder="Nombre interno del equipo" required="required">
                   </div>
                 </div>
-                <div class="col-md-9"> 
+                <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="tipo">Tipo</label>
                     <select class="form-control" th:field="*{configuracion}" name="configuracion" id="configuracion">
@@ -76,61 +76,78 @@
                 </div>
                 <div class="col-md-3"> 
                   <div class="form-group">
-                    <label for=""></label>
+                    <label for="nombreLocacion">Nombre Local</label>
+                    <input type="text" class="form-control" th:field="*{nombreLocacion}" id="nombreLocacion" name="nombreLocacion" placeholder="Nombre del Local" required="required">
+                  </div>
+                </div>
+                <div class="col-md-3"> 
+                  <div class="form-group">
+                    <label for="">Direcci&oacute;n</label>
                     <input type="text" class="form-control" th:field="*{}" id="" name="" placeholder="" required="required">
                   </div>
                 </div>
                 <div class="col-md-3"> 
                   <div class="form-group">
-                    <label for=""></label>
+                    <label for="">Localidad</label>
                     <input type="text" class="form-control" th:field="*{}" id="" name="" placeholder="" required="required">
                   </div>
                 </div>
                 <div class="col-md-3"> 
                   <div class="form-group">
-                    <label for="fecha">Fecha de Publicación</label>
+                    <label for="">Codigo Postal</label>
+                    <input type="text" class="form-control" th:field="*{}" id="" name="" placeholder="" required="required">
+                  </div>
+                </div>
+                <div class="col-md-3"> 
+                  <div class="form-group">
+                    <label for="">Horario</label>
+                    <input type="text" class="form-control" th:field="*{}" id="" name="" placeholder="" required="required">
+                  </div>
+                </div>
+                <div class="col-md-3"> 
+                  <div class="form-group">
+                    <label for="fecha">Fecha de Publicaci&oacute;n</label>
                     <input type="text" class="form-control" th:field="*{fecha}" name="fecha" id="fecha" placeholder="Fecha de publicacion" required="required">
                   </div>  
                 </div>
                 <div class="col-md-3"> 
-                  <div class="form-check">
-                    <label class="form-check-label" for="destacado0"></label><br>
-                    <input class="form-check-input" type="radio" th:field="*{destacado}" name="destacado" id="destacado" value="1" checked="checked">
-                    <label class="form-check-label" for="destacado1">Destacado</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" th:field="*{destacado}" name="destacado" id="destacado" value="0">
-                    <label class="form-check-label" for="destacado2">No Destacado</label>
-                  </div>
-                </div>
-              </div>    
-              <div class="row">
-                <div class="col-md-3"> 
                   <div class="form-group">
-                    <label for="salario">Salario Ofrecido (Aprox)</label>
-                    <input type="text" class="form-control" th:field="*{salario}" name="salario" id="salario" placeholder="Salario aproximado." required="required">
+                    <label for="">Contacto Local</label>
+                    <input type="text" class="form-control" th:field="*{}" id="" name="" placeholder="" required="required">
                   </div>
                 </div>
                 <div class="col-md-3"> 
                   <div class="form-group">
-                    <label for="archivoImagen">Imagen</label>
-                    <input type="file" class="form-control-file" name="archivoImagen" id="archivoImagen">
+                    <label for="">Contacto Supervisor</label>
+                    <input type="text" class="form-control" th:field="*{}" id="" name="" placeholder="" required="required">
                   </div>
                 </div>
-              </div> 
-              <hr>
-              <div class="row">
-                <div class="col-md-9"> 
+                <div class="col-md-3"> 
                   <div class="form-group">
-                    <label for="detalles"><strong>Detalles</strong></label>          
-                    <textarea class="form-control" th:field="*{detalles}" name="detalles" id="detalles" rows="7"></textarea>
+                    <label for="tipo">Tipo</label>
+                    <select class="form-control" th:field="*{configuracion}" name="configuracion" id="configuracion">
+                       
+                      <option value="HT">HT</option>
+                      <option value="CT">CT</option>
+                      
+                    </select>
+                    
                   </div> 
-                </div> 
-                <div class="col-md-3">
-                  <label for="imagen">Imagen/Logo</label>
-                  <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen})}" alt="Generic placeholder image" width="200" height="200">            
                 </div>
-              </div> 
+                 
+                <div class="col-md-3"> 
+                  <div class="form-group">
+                    <label for="tipo">Tipo</label>
+                    <select class="form-control" th:field="*{configuracion}" name="configuracion" id="configuracion">
+                       
+                      <option value="HT">HT</option>
+                      <option value="CT">CT</option>
+                      
+                    </select>
+                    
+                  </div> 
+                </div>     
+             
               <button type="submit" class="btn btn-primary">Guardar</button>  
             </form>
           </div>
