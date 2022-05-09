@@ -32,7 +32,7 @@ public class TerminalController {
 	
 	@GetMapping("/create")
 	public String crear(Terminal terminal) {
-		return "vacantes/formVacante";
+		return "terminales/formTerminales";
 	}
 
 	// Metodo save utilizando Data Binding

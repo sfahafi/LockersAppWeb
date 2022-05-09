@@ -24,12 +24,12 @@
 
     <main role="main">     
       <hr>
-      <div class="container"> 
+      <div class="container col-12"> 
 
         <div class="card">
           <h4 class="card-header"><strong>Datos del equipo</strong></h4>              
           <div class="card-body">
-            <form th:action="@{/terminales/save}" method="post" th:object="${vacante}" > <!-- th:object="${vacante}" se agrega para poder manejar los errores -->
+            <form th:action="@{/terminales/save}" method="post" th:object="${terminal}" > <!-- th:object="${vacante}" se agrega para poder manejar los errores -->
               
               <!-- En este div se capturan los errores y se muestran al usuario en la interfaz -->
               <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role="alert">
@@ -50,7 +50,7 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="tipo">Tipo</label>
-                    <select class="form-control" th:field="*{configuracion}" name="configuracion" id="configuracion">
+                    <select class="form-control" th:field="*{tipo}" name="tipo" id="tipo">
                        
                       <option value="HT">HT</option>
                       <option value="CT">CT</option>
@@ -59,21 +59,25 @@
                     
                   </div> 
                 </div>    
-              </div>    
-              <div class="row">
+                 
+              
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="configuracion">Configuraci&oacute;n</label>
-                    <input type="text" class="form-control" th:field="*{configuracion}" id="configuracion" name="configuracion" placeholder="Modelo de terminal" required="required">
+                    <input type="text" class="form-control" th:field="*{configuracion}" id="configuracion" name="configuracion" placeholder="Modelo de terminal:  A, D, H, ...">
                   </div>
                 </div>
-
+		       
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="nBoxes">N° Boxes</label>
                     <input type="text" class="form-control" th:field="*{nBoxes}" id="nBoxes" name="nBoxes" placeholder="Numero de Boxes" required="required">
                   </div>
                 </div>
+                
+              </div>
+              <div class="row">
+              
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="nombreLocacion">Nombre Local</label>
@@ -82,53 +86,78 @@
                 </div>
                 <div class="col-md-3"> 
                   <div class="form-group">
-                    <label for="">Direcci&oacute;n</label>
-                    <input type="text" class="form-control" th:field="*{}" id="" name="" placeholder="" required="required">
+                    <label for="direccion">Direcci&oacute;n</label>
+                    <input type="text" class="form-control" th:field="*{direccion}" id="direccion" name="direccion" placeholder="Direccion del Local" required="required">
                   </div>
                 </div>
                 <div class="col-md-3"> 
                   <div class="form-group">
-                    <label for="">Localidad</label>
-                    <input type="text" class="form-control" th:field="*{}" id="" name="" placeholder="" required="required">
+                    <label for="localidad">Localidad</label>
+                    <select class="form-control" th:field="*{localidad}" name="localidad" id="localidad">
+                       
+                      <option value="CABA">CABA</option>
+                      <option value="Norte">Norte</option>
+                      <option value="Sur">Sur</option>
+                      <option value="Oeste">Oeste</option>
+                      <option value="Cordoba">Cordoba</option>
+                      <option value="Neuquen">Neuquen</option>
+                      <option value="Stock_Caba">Stock Caba</option>
+                      <option value="Stock_Cordoba">Stock Cordoba</option>
+                      <option value="Stock_Neuquen">Stock Neuquen</option>
+                      
+                    </select>
                   </div>
                 </div>
                 <div class="col-md-3"> 
                   <div class="form-group">
-                    <label for="">Codigo Postal</label>
-                    <input type="text" class="form-control" th:field="*{}" id="" name="" placeholder="" required="required">
+                    <label for="cp">Codigo Postal</label>
+                    <input type="text" class="form-control" th:field="*{cp}" id="cp" name="cp" placeholder="Codigo Postal" required="required">
+                  </div>
+                </div>
+                
+              </div>
+              <div class="row">
+                
+                <div class="col-md-3"> 
+                  <div class="form-group">
+                    <label for="horario">Horario</label>
+                    <input type="text" class="form-control" th:field="*{horario}" id="horario" name="horario" placeholder="Horario del Local" required="required">
                   </div>
                 </div>
                 <div class="col-md-3"> 
                   <div class="form-group">
-                    <label for="">Horario</label>
-                    <input type="text" class="form-control" th:field="*{}" id="" name="" placeholder="" required="required">
-                  </div>
-                </div>
-                <div class="col-md-3"> 
-                  <div class="form-group">
-                    <label for="fecha">Fecha de Publicaci&oacute;n</label>
-                    <input type="text" class="form-control" th:field="*{fecha}" name="fecha" id="fecha" placeholder="Fecha de publicacion" required="required">
+                    <label for="fechaInstalacion">Fecha de Instalaci&oacute;n</label>
+                    <input type="text" class="form-control" th:field="*{fechaInstalacion}" name="fechaInstalacion" id="fecha" placeholder="Fecha" required="required">
                   </div>  
                 </div>
                 <div class="col-md-3"> 
                   <div class="form-group">
-                    <label for="">Contacto Local</label>
-                    <input type="text" class="form-control" th:field="*{}" id="" name="" placeholder="" required="required">
+                    <label for="contactoLocal">Contacto Local</label>
+                    <input type="text" class="form-control" th:field="*{contactoLocal}" id="contactoLocal" name="contactoLocal" placeholder="N° Telefono">
                   </div>
                 </div>
                 <div class="col-md-3"> 
                   <div class="form-group">
-                    <label for="">Contacto Supervisor</label>
-                    <input type="text" class="form-control" th:field="*{}" id="" name="" placeholder="" required="required">
+                    <label for="contactoSup">Contacto Supervisor</label>
+                    <input type="text" class="form-control" th:field="*{contactoSup}" id="contactoSup" name="contactoSup" placeholder="N° Telefono">
                   </div>
                 </div>
+                
+              </div>
+              <div class="row">
+                
                 <div class="col-md-3"> 
                   <div class="form-group">
-                    <label for="tipo">Tipo</label>
-                    <select class="form-control" th:field="*{configuracion}" name="configuracion" id="configuracion">
+                    <label for="estatus">Estatus</label>
+                    <select class="form-control" th:field="*{estatus}" name="estatus" id="estatus">
                        
-                      <option value="HT">HT</option>
-                      <option value="CT">CT</option>
+                      <option value="Activo">Activo</option>
+                      <option value="Mantenimiento">Mantenimiento</option>
+                      <option value="Desactivado">Desactivado</option>
+                      <option value="Desinstalado">Desinstalado</option>
+                      <option value="Stock">Stock</option>
+                      <option value="Test">Test</option>
+                      <option value="Desarmadas">Desarmadas</option>
                       
                     </select>
                     
@@ -137,16 +166,19 @@
                  
                 <div class="col-md-3"> 
                   <div class="form-group">
-                    <label for="tipo">Tipo</label>
-                    <select class="form-control" th:field="*{configuracion}" name="configuracion" id="configuracion">
+                    <label for="red">Red</label>
+                    <select class="form-control" th:field="*{red}" name="red" id="red">
                        
-                      <option value="HT">HT</option>
-                      <option value="CT">CT</option>
+                      <option value="Buenos_Aires">Buenos Aires</option>
+                      <option value="Cordoba">Cordoba</option>
+                      <option value="Neuquen">Neuquen</option>
                       
                     </select>
                     
                   </div> 
-                </div>     
+                </div> 
+                
+              </div>    
              
               <button type="submit" class="btn btn-primary">Guardar</button>  
             </form>

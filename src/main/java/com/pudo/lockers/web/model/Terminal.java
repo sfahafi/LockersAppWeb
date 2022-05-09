@@ -115,6 +115,7 @@ public class Terminal {
 	public void setRed(String red) {
 		this.red = red;
 	}
+	
 	public Date getFechaInstalacion() {
 		return fechaInstalacion;
 	}
