@@ -14,15 +14,15 @@ public class Terminal {
 	
     private String nombrePc;
     private String tipo;
-    private String configuracion;
+    private String configuracion = "-";
     private Integer nBoxes;
 	private String nombreLocacion;
     private String direccion;
     private String localidad;
     private String cp;
     private String horario;
-    private String contactoLocal;
-    private String contactoSup;
+    private String contactoLocal = "Sin datos";
+    private String contactoSup = "Sin datos";
     
     @Temporal(TemporalType.DATE)
     private Date fechaInstalacion;
@@ -121,6 +121,18 @@ public class Terminal {
 	}
 	public void setFechaInstalacion(Date fechaInstalacion) {
 		this.fechaInstalacion = fechaInstalacion;
+	}
+	
+	public void reset() {
+		this.contactoLocal = null;
+	}
+	
+	public void reset2() {
+		this.contactoSup = null;
+	}
+	
+	public void reset3() {
+		this.configuracion = null;
 	}
 	
 	@Override

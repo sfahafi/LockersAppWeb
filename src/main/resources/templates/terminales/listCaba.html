@@ -44,7 +44,7 @@
               <thead class="thead-light">
                 <tr>
                   <th scope="col">Nombre</th>
-                  <th scope="col">Tipo</th>                  
+                  <th scope="col">Modelo</th>                  
                   <th scope="col">Locacion</th>
                   <th scope="col">Direccion</th>
                   <th scope="col">CP</th>
@@ -58,7 +58,7 @@
               <tbody>
                 <tr th:each="terminal : ${terminales}">
 					<td th:text="${terminal.nombrePc}"></td>
-					<td th:text="${terminal.tipo} + ' ' + ${terminal.nBoxes}"></td>
+					<td th:text="${terminal.tipo} + ${terminal.configuracion} + ${terminal.nBoxes}"></td>
 					<td th:text="${terminal.nombreLocacion}"></td>
 					<td th:text="${terminal.direccion}"></td>
 					<td th:text="${terminal.cp}"></td>

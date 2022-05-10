@@ -1,13 +1,17 @@
 package com.pudo.lockers.web.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -39,22 +43,27 @@ public class TerminalController {
 	@PostMapping("/save")
 	public String guardar(Terminal term, BindingResult result, RedirectAttributes attributes) { // BindingResult captura el error en la bariable
 																		// result
-		if (result.hasErrors()) { // Si se detecta error, vuelve al formulario de vacante e imprime el error en
-									// consola
-			for (ObjectError error : result.getAllErrors()) {
-				System.out.println("Ocurrio un error: " + error.getDefaultMessage());
-			}
+		if (result.hasErrors()){		
+			System.out.println("Existieron errores");
 			return "terminales/formTerminales";
 		}
 
 
 		terminal.guardar(term);
 		attributes.addFlashAttribute("msg", "El equipo se registro con éxito!");
-		System.out.println("Terminal: " + term);
+		//System.out.println("Terminal: " + term);
 
 		return "redirect:/terminales/caba";
 	}
 
+	
+	@InitBinder
+	public void initBinder(WebDataBinder webDataBinder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+	}
+	
+	
 	
 	
 }
