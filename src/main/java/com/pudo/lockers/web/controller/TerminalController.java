@@ -64,6 +64,10 @@ public class TerminalController {
 	}
 	
 	
-	
+	@GetMapping("/mostrar")
+	public String verConectividad() {
+		
+		return "terminales/conectividad";
+	}
 	
 }
