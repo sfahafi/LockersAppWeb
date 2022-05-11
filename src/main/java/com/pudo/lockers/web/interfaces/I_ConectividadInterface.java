@@ -10,5 +10,4 @@ public interface I_ConectividadInterface {
 	Conectividad buscarPorId(Integer idConectividad);
 	void guardar(Conectividad conectividad);
 	void eliminar(Integer idConectividad);
-	
 }

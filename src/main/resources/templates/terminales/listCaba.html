@@ -44,12 +44,12 @@
               <thead class="thead-light">
                 <tr>
                   <th scope="col">Nombre</th>
-                  <th scope="col">Modelo</th>                  
+                  <!-- <th scope="col">Modelo</th>   -->               
                   <th scope="col">Locacion</th>
                   <th scope="col">Direccion</th>
-                  <th scope="col">CP</th>
+                  <!--  <th scope="col">CP</th>
                   <th scope="col">Horario</th>
-                  <th scope="col">Instalado</th>
+                  <th scope="col">Instalado</th> -->
                   <th scope="col">Tel. Local</th>
                   <th scope="col">Tel. Super</th>
                   <th scope="col">Operaciones</th>
@@ -58,23 +58,34 @@
               <tbody>
                 <tr th:each="terminal : ${terminales}">
 					<td th:text="${terminal.nombrePc}"></td>
-					<td th:text="${terminal.tipo} + ${terminal.configuracion} + ${terminal.nBoxes}"></td>
+					<!--<td th:text="${terminal.tipo} + ${terminal.configuracion} + ${terminal.nBoxes}"></td>   -->    
 					<td th:text="${terminal.nombreLocacion}"></td>
 					<td th:text="${terminal.direccion}"></td>
-					<td th:text="${terminal.cp}"></td>
+					<!--<td th:text="${terminal.cp}"></td>
 					<td th:text="${terminal.horario}"></td>
-					<td th:text="${#dates.format(terminal.fechaInstalacion, 'dd-MM-yyyy')}"></td>
+					<td th:text="${#dates.format(terminal.fechaInstalacion, 'dd-MM-yyyy')}"></td> -->
 					<td th:text="${terminal.contactoLocal}"></td>
 					<td th:text="${terminal.contactoSup}"></td>
-					<td><a
-						class="btn btn-success btn-sm" role="button"
-						title="Editar el registro."><i class="fas fa-pencil-alt"
-					    aria-hidden="true"></i></a> <a
-					    
-						onclick="return confirm('Se va a eliminar la vacante, deseas continuar?')"
-						class="btn btn-success btn-sm" role="button"
-						title="Eliminar el registro."><i class="fas fa-trash"
-						aria-hidden="true"></i></a></td>
+					
+					<td>
+						<a
+							th:href="@{/conectividades/mostrar/{id} (id=${conectividad.idTerminal})}"
+							class="btn btn-warning btn-sm" role="button"
+							title="Datos de Conectividad."><i class="fas fa-thin fa-network-wired" aria-hidden="true"></i>
+						</a> 
+						
+						<a
+							class="btn btn-warning btn-sm" role="button"
+							title="Datos del Equipo."><i class="far fa-file-alt" aria-hidden="true"></i>
+						</a>
+						
+						<a
+							class="btn btn-warning btn-sm" role="button"
+							title="Editar Equipo."><i class="far fa-edit" aria-hidden="true"></i>
+						</a>
+						
+					</td>
+					
 				</tr>
                 
                                                
