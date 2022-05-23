@@ -6,17 +6,23 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+//import org.springframework.data.domain.Example;
+//import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+//import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+//import com.pudo.lockers.web.interfaces.I_ConectividadInterface;
 import com.pudo.lockers.web.interfaces.I_TerminalInterface;
+//import com.pudo.lockers.web.model.Conectividad;
 import com.pudo.lockers.web.model.Terminal;
 
 @Controller
@@ -25,11 +31,16 @@ public class TerminalController {
 
 	
 	@Autowired
-	private I_TerminalInterface terminal;
+	private I_TerminalInterface iTerminal;
+	
+	/*
+	@Autowired
+	private I_ConectividadInterface iConectividad;
+	*/
 	
 	@GetMapping("/caba")
 	public String listaCaba(Model model) {
-		List<Terminal> lista = terminal.buscarTodas();
+		List<Terminal> lista = iTerminal.buscarTodas();
 		model.addAttribute("terminales", lista);
 		return "terminales/listCaba";
 	}
@@ -41,7 +52,7 @@ public class TerminalController {
 
 	// Metodo save utilizando Data Binding
 	@PostMapping("/save")
-	public String guardar(Terminal term, BindingResult result, RedirectAttributes attributes) { // BindingResult captura el error en la bariable
+	public String guardar(Terminal terminal, BindingResult result, RedirectAttributes attributes) { // BindingResult captura el error en la bariable
 																		// result
 		if (result.hasErrors()){		
 			System.out.println("Existieron errores");
@@ -49,7 +60,7 @@ public class TerminalController {
 		}
 
 
-		terminal.guardar(term);
+		iTerminal.guardar(terminal);
 		attributes.addFlashAttribute("msg", "El equipo se registro con éxito!");
 		//System.out.println("Terminal: " + term);
 
@@ -64,10 +75,36 @@ public class TerminalController {
 	}
 	
 	
+	@GetMapping("/edit/{id}")
+	public String editar(@PathVariable("id") Integer idTerminal, Model model) {
+		Terminal terminal = iTerminal.buscarPorId(idTerminal);
+		model.addAttribute("terminal", terminal);
+		return "terminales/formTerminales";
+	}
+	
+	
+	
+	/*
 	@GetMapping("/mostrar")
 	public String verConectividad() {
 		
 		return "terminales/conectividad";
 	}
+	
+	@GetMapping("/search/{id}")
+	public String buscar(@ModelAttribute("search") Conectividad conectividad, Model model) {
+		System.out.println("Buscando por: " + conectividad);
+		
+		ExampleMatcher matcher = ExampleMatcher.matching() // equivale a where descripcion like '%?%'
+				.withMatcher("idTerminal", ExampleMatcher 
+				.GenericPropertyMatchers.contains());
+		
+		Example<Conectividad> example = Example.of(conectividad, matcher);
+		List<Conectividad> lista = iConectividad.buscarByExample(example);
+		model.addAttribute("conectividades", lista);
+		
+		return "verConectividad";
+	} 
+	*/
 	
 }

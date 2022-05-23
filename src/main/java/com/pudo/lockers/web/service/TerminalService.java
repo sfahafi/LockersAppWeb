@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.pudo.lockers.web.interfaces.I_TerminalInterface;
@@ -40,6 +41,11 @@ public class TerminalService implements I_TerminalInterface {
 	public void eliminar(Integer idTerminal) {
 		trepo.deleteById(idTerminal);
 
+	}
+
+	@Override
+	public List<Terminal> buscarByExample(Example<Terminal> example) {
+		return trepo.findAll(example);
 	}
 
 }

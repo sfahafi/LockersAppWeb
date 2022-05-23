@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.pudo.lockers.web.interfaces.I_ConectividadInterface;
@@ -40,6 +41,11 @@ public class ConectividadService implements I_ConectividadInterface {
 	public void eliminar(Integer idConectividad) {
 		crepo.deleteById(idConectividad);
 
+	}
+
+	@Override
+	public List<Conectividad> buscarByExample(Example<Conectividad> example) {
+		return crepo.findAll(example);
 	}
 
 
