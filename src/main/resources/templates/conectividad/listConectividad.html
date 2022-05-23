@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Pudo R&M</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <header th:insert="fragments/menu :: menu-principal">
+      
+    </header>
+
+    <main role="main">    
+     
+      <hr>
+      
+      <div class="container col-12"> 
+
+        <div class="card">
+         
+          <h4 class="card-header"><strong>Listado de Conectividad</strong></h4>              
+          <div class="card-body">
+            
+          <a class="btn btn-dark text-warning" th:href="@{/terminales/create}" title="Crear nueva Terminal" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva Terminal</a>         
+            
+            <hr>
+            
+            <div th:if="${msg != null}" class="alert alert-success"
+						th:text="${msg}" role="alert"></div>
+            
+            <table class="table table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Nombre Locker</th>
+                  <th scope="col">Internet</th>                  
+                  <th scope="col">Fuente</th>
+                  <th scope="col">C&iacute;a. Chip</th>
+                  <th scope="col">MAC Modem</th>
+                  <th scope="col">SN Modem</th>
+                  <th scope="col">ID TV</th>
+                  <th scope="col">SN Router</th>
+                  <th scope="col">SN DVR</th>
+                  <th scope="col">C&oacute;digo DVR</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="terminal : ${terminales}">
+					<td th:text="${terminal.nombrePc}"></td>
+					<!--<td th:text="${terminal.tipo} + ${terminal.configuracion} + ${terminal.nBoxes}"></td>   -->    
+					<td th:text="${terminal.nombreLocacion}"></td>
+					<td th:text="${terminal.direccion}"></td>
+					<!--<td th:text="${terminal.cp}"></td>
+					<td th:text="${terminal.horario}"></td>
+					<td th:text="${#dates.format(terminal.fechaInstalacion, 'dd-MM-yyyy')}"></td> -->
+					<td th:text="${terminal.contactoLocal}"></td>
+					<td th:text="${terminal.contactoSup}"></td>
+					
+					<td>
+						
+						<a
+							class="btn btn-warning btn-sm" role="button" data-toggle="modal" data-target="#exampleModal"
+							title="Datos del Equipo."><i class="fas fa-network-wired" aria-hidden="true"></i>
+						</a>
+						
+						
+						 <!-- Modal -->
+							<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header bg-light">
+							        <h5 class="modal-title" id="exampleModalLabel">Datos de Conectividad</h5>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      <div class="modal-body">
+							        <ul th:each="terminal : ${terminales}">
+							        	<li th:text="${terminal.nombrePc}">
+							        </ul>
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+							      </div>
+							    </div>
+							  </div>
+							</div> 
+						
+						<a
+							class="btn btn-warning btn-sm" role="button"
+							title="Datos del Equipo."><i class="far fa-file-alt" aria-hidden="true"></i>
+						</a>
+						
+						<a
+							th:href="@{/terminales/edit/{id} (id=${terminal.id})}" class="btn btn-warning btn-sm" role="button"
+							title="Editar Equipo."><i class="far fa-edit" aria-hidden="true"></i>
+						</a>
+						
+					</td>
+					
+				</tr>
+                
+                                               
+              </tbody>
+            </table>
+            </div>
+
+        </div>
+      </div> <!-- /container -->
+
+    </main>
+
+    <footer th:insert="fragments/footer :: pie-pagina" class="footer">
+      
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>     
+  </body>
+</html>
