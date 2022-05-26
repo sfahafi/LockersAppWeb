@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Pudo R&M</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" >
+  </head>
+
+  <body>
+
+    <header th:insert="fragments/menu :: menu-principal">
+      
+    </header>
+
+    <main role="main">     
+      <hr>
+      <div class="container col-12"> 
+
+        <div class="card">
+          <h4 class="card-header"><strong>Datos de Conecci&oacute;n</strong></h4>              
+          <div class="card-body">
+            <form th:action="@{/conectividades/save}" method="post" th:object="${conectividad}" >
+              
+              <!-- En este div se capturan los errores y se muestran al usuario en la interfaz -->
+              <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role="alert">
+              	Por favor corrija los siguientes errores!
+              	<ul>
+              		<li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
+              	</ul>
+              </div>    
+                        
+              <div class="row">
+                <div class="col-md-3"> 
+                  <div class="form-group">
+                    <label for="terminal">Terminal</label>
+                    <input type="hidden" th:field="*{id}"> <!-- tipo hidden no es visible y con field capturamos el valor, en este caso el id -->
+                    <select class="form-control" th:field="*{terminal.id}">
+	                    <option th:each="terminal : ${terminales}" th:value="${terminal.id}" th:text="${terminal.nombrePc}"> </option>
+	                      
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3"> 
+                  <div class="form-group">
+                    <label for="internet">Internet</label>
+                    <select class="form-control" th:field="*{internet}" name="internet" id="internet">
+                       
+                      <option value="Wifi">Wifi</option>
+                      <option value="Cable">Cable</option>
+                      <option value="Sin_Conecion">Sin Coneci&oacute;n</option>
+                      <option value="Telecentro">Telecentro</option>
+                      <option value="Fibertel">Fibertel</option>
+                      
+                    </select>
+                    
+                  </div> 
+                </div>    
+                 
+              
+                <div class="col-md-3"> 
+                  <div class="form-group">
+                    <label for="fuente">Fuente</label>
+                    <select class="form-control" th:field="*{fuente}" name="fuente" id="fuente">
+                       
+                      <option value="Local">Local</option>
+                      <option value="Propia">Propia</option>
+                      
+                    </select>
+                  </div>
+                </div>
+		       
+                <div class="col-md-3"> 
+                  <div class="form-group">
+                    <label for="chipCompani">C&iacute;a. Chip</label>
+                    <select class="form-control" th:field="*{chipCompani}" name="chipCompani" id="chipCompani">
+                       
+                      <option value="Movistar_4G">Movistar 4G</option>
+                      <option value="Personal">Personal</option>
+                      <option value="Claro">Claro</option>
+                      
+                    </select>
+                  </div>
+                </div>
+                
+              </div>
+              <div class="row">
+              
+                <div class="col-md-3"> 
+                  <div class="form-group">
+                    <label for="chipNumero">N° Chip</label>
+                    <input type="text" class="form-control" th:field="*{chipNumero}" id="chipNumero" name="chipNumero" placeholder="N&uacute;mero del Chip" required="required">
+                  </div>
+                </div>
+                <div class="col-md-3"> 
+                  <div class="form-group">
+                    <label for="idTeamviewer">ID Team Viewer</label>
+                    <input type="text" class="form-control" th:field="*{idTeamviewer}" id="idTeamviewer" name="idTeamviewer" placeholder="Colocar ID TV">
+                  </div>
+                </div>
+                <div class="col-md-3"> 
+                  <div class="form-group">
+                    <label for="serialRouter">Serial Router</label>
+                    <input type="text" class="form-control" th:field="*{serialRouter}" id="serialRouter" name="serialRouter" placeholder="Colocar SN">
+                  </div>
+                </div>
+                
+              </div>
+              <div class="row">
+                
+                <div class="col-md-3"> 
+                  <div class="form-group">
+                    <label for="serialDvr">Serial DVR</label>
+                    <input type="text" class="form-control" th:field="*{serialDvr}" id="serialDvr" name="serialDvr" placeholder="Colocar SN" required="required">
+                  </div>
+                </div>
+                <div class="col-md-3"> 
+                  <div class="form-group">
+                    <label for="codigoDvr">C&oacute;digo DVR</label>
+                    <input type="text" class="form-control" th:field="*{codigoDvr}" name="codigoDvr" id="codigoDvr" placeholder="C&oacute;digo de verificaci&oacute;n" required="required">
+                  </div>  
+                </div>
+                <div class="col-md-3"> 
+                  <div class="form-group">
+                    <label for="macModem">MAC Modem</label>
+                    <input type="text" class="form-control" th:field="*{macModem}" id="macModem" name="macModem" placeholder="Colocal mac">
+                  </div>
+                </div>
+                <div class="col-md-3"> 
+                  <div class="form-group">
+                    <label for="snModem">Serial Modem</label>
+                    <input type="text" class="form-control" th:field="*{snModem}" id="snModem" name="snModem" placeholder="Colocar SN">
+                  </div>
+                </div>
+                
+              </div>
+             
+              <button type="submit" class="btn btn-primary">Guardar</button>  
+            </form>
+          </div>
+        </div>
+      </div> <!-- /container -->
+
+    </main>
+
+    <footer th:insert="fragments/footer :: pie-pagina" class="footer">
+      
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>    
+    <script th:src="@{/tinymce/tinymce.min.js}"></script>
+    <script>
+      
+      
+     
+      
+    </script>
+  </body>
+</html>

@@ -33,7 +33,7 @@
           <h4 class="card-header"><strong>Listado de Conectividad</strong></h4>              
           <div class="card-body">
             
-          <a class="btn btn-dark text-warning" th:href="@{/terminales/create}" title="Crear nueva Terminal" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva Terminal</a>         
+          <a class="btn btn-dark text-warning" th:href="@{/conectividades/create}" title="Agregar dotos de conecci&oacute;n" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva Conecci&oacute;n</a>         
             
             <hr>
             
@@ -47,26 +47,31 @@
                   <th scope="col">Internet</th>                  
                   <th scope="col">Fuente</th>
                   <th scope="col">C&iacute;a. Chip</th>
+                  <th scope="col">N&uacute;mero Chip</th>
                   <th scope="col">MAC Modem</th>
                   <th scope="col">SN Modem</th>
                   <th scope="col">ID TV</th>
                   <th scope="col">SN Router</th>
                   <th scope="col">SN DVR</th>
                   <th scope="col">C&oacute;digo DVR</th>
+                  <th scope="col">Operaciones</th>
                 </tr>
               </thead>
               <tbody>
-                <tr th:each="terminal : ${terminales}">
-					<td th:text="${terminal.nombrePc}"></td>
-					<!--<td th:text="${terminal.tipo} + ${terminal.configuracion} + ${terminal.nBoxes}"></td>   -->    
-					<td th:text="${terminal.nombreLocacion}"></td>
-					<td th:text="${terminal.direccion}"></td>
-					<!--<td th:text="${terminal.cp}"></td>
-					<td th:text="${terminal.horario}"></td>
-					<td th:text="${#dates.format(terminal.fechaInstalacion, 'dd-MM-yyyy')}"></td> -->
-					<td th:text="${terminal.contactoLocal}"></td>
-					<td th:text="${terminal.contactoSup}"></td>
+                <tr th:each="conectividad : ${conectividades}">
+					<td th:text="${conectividad.terminal.nombrePc}"></td>
+					<td th:text="${conectividad.internet}"></td>    
+					<td th:text="${conectividad.fuente}"></td>
+					<td th:text="${conectividad.chipCompani}"></td>
+					<td th:text="${conectividad.chipNumero}"></td>
+					<td th:text="${conectividad.macModem}"></td>
+					<td th:text="${conectividad.snModem}"></td> 
+					<td th:text="${conectividad.idTeamviewer}"></td>
+					<td th:text="${conectividad.serialRouter}"></td>
+					<td th:text="${conectividad.serialDvr}"></td>
+					<td th:text="${conectividad.codigoDvr}"></td>
 					
+					<!--  
 					<td>
 						
 						<a
@@ -75,7 +80,7 @@
 						</a>
 						
 						
-						 <!-- Modal -->
+						 
 							<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							  <div class="modal-dialog" role="document">
 							    <div class="modal-content">
@@ -100,14 +105,16 @@
 						<a
 							class="btn btn-warning btn-sm" role="button"
 							title="Datos del Equipo."><i class="far fa-file-alt" aria-hidden="true"></i>
-						</a>
+						</a> -->
 						
+					<td>
 						<a
-							th:href="@{/terminales/edit/{id} (id=${terminal.id})}" class="btn btn-warning btn-sm" role="button"
-							title="Editar Equipo."><i class="far fa-edit" aria-hidden="true"></i>
+							th:href="@{/conectividades/edit/{id} (id=${conectividad.id})}" class="btn btn-warning btn-sm" role="button"
+							title="Editar Conecci&oacute;n."><i class="far fa-edit" aria-hidden="true"></i>
 						</a>
 						
-					</td>
+					</td> 
+					
 					
 				</tr>
                 

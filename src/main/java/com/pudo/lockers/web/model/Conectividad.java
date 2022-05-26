@@ -24,6 +24,8 @@ public class Conectividad {
     private String serialRouter;
     private String serialDvr;
     private String codigoDvr;
+    
+    
 	public Integer getId() {
 		return id;
 	}
