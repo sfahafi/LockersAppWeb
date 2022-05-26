@@ -10,7 +10,7 @@ public class Conectividad {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-    @ManyToOne
+    @OneToOne
 	@JoinColumn(name="idTerminal", referencedColumnName = "id")
 	private Terminal terminal;
     
@@ -103,7 +103,7 @@ public class Conectividad {
 	
 	@Override
 	public String toString() {
-		return "Conectividad [id=" + id + ", terminal=" + terminal + ", internet=" + internet + ", Fuente=" + Fuente
+		return "Conectividad [id=" + id + ", terminal=" + terminal.getNombrePc() + ", internet=" + internet + ", Fuente=" + Fuente
 				+ ", chipCompani=" + chipCompani + ", chipNumero=" + chipNumero + ", idTeamviewer=" + idTeamviewer
 				+ ", serialRouter=" + serialRouter + ", serialDvr=" + serialDvr + ", codigoDvr=" + codigoDvr + "]";
 	}
