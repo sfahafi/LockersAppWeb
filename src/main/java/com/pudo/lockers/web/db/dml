@@ -17,7 +17,16 @@ estatus, red) values
     (2,'054HT1600000001','HT','HT',16,'Kiosco Cartu','Gurruchaga 796','CABA','1414','24Hs','2020-01-14','11-7072-5479','11-6823-0610','Activo','Buenos_Aires'),
     (3,'054HT1600000004','HT','HT',16,'OPEN25 L145','Av. Cordoba 315','CABA','1054','24Hs','2018-08-22','SN','11-3376-6407 ','Activo','Buenos_Aires'),
     (4,'054PUDOPNX00005','CT','D',62,'Axion Energy','Av. Cordoba 5653','CABA','1414','24Hs','2019-05-06','4771-0300','15-2844-9764','Activo','Buenos_Aires');
+
+
+insert into conectividades(idTerminal, internet, Fuente, chipCompani, chipNumero, macModem, 
+snModem, idTeamviewer, serialRouter, serialDvr, codigoDvr) values
+    (2,'Cable','Local','Movistar_4G','8954079900004605983','NS','NS','1078239609','8951XQ1803220754','NS','NS');
     
+  
+
 select * from terminales;
 
 select * from modulos;
+
+select * from conectividades;
