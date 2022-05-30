@@ -20,9 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-//import com.pudo.lockers.web.interfaces.I_ConectividadInterface;
 import com.pudo.lockers.web.interfaces.I_TerminalInterface;
-//import com.pudo.lockers.web.model.Conectividad;
 import com.pudo.lockers.web.model.Terminal;
 
 @Controller
@@ -82,9 +80,45 @@ public class TerminalController {
 		return "terminales/formTerminales";
 	}
 	
+	@GetMapping("/delete/{id}")
+	public String eliminar(@PathVariable("id") int idTerminal, RedirectAttributes attributes) {
+		System.out.println("Borrando terminal con id: " + idTerminal);
+
+		try {
+
+			iTerminal.eliminar(idTerminal);
+			attributes.addFlashAttribute("msg", "La terminal fue eliminada!"); // para desplegar mensaje en la vista
+			// model.addAttribute("id", idVacante);
+			
+		} catch (Exception ex) {
+			attributes.addFlashAttribute("msg", "No es posible eliminar la terminal seleccionada!.");
+		}
+		
+		return "redirect:/terminales/caba";
+	}
+	
 	
 	
 	/*
+    @ModelAttribute
+	public void setGenericos(Model model) {
+		model.addAttribute("categorias", serviceCategorias.buscarTodas());
+	}
+
+	@GetMapping("/view/{id}")
+	public String verDetalle(@PathVariable("id") int idVacante, Model model) {
+
+		Vacante vacante = serviceVacantes.buscarPorId(idVacante);
+
+		System.out.println("vacante" + vacante);
+		model.addAttribute("vacante", vacante);
+		return "detalle";
+	}
+	 
+	 
+	 
+	 
+	 
 	@GetMapping("/mostrar")
 	public String verConectividad() {
 		
