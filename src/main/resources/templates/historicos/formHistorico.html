@@ -1,16 +1,128 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<frameset>
-    <frame>
-    <frame>
-    <noframes>
-    <body>
-    <p>This page uses frames. The current browser you are using does not support frames.</p>
-    </body>
-    </noframes>
-</frameset>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>EmpleosApp | Creación de Ofertas de Trabajo</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" >
+  </head>
+
+  <body>
+
+    <header th:insert="fragments/menu :: menu-principal">
+      
+    </header>
+
+    <main role="main">     
+      <hr>
+      <div class="container"> 
+
+        <div class="card">
+          <h4 class="card-header"><strong>Datos de la Incidencia</strong></h4>              
+          <div class="card-body">
+            <form th:action="@{/historicos/save}" method="post" th:object="${historico}">
+              
+              <!-- En este div se capturan los errores y se muestran al usuario en la interfaz -->
+              <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role="alert">
+              	Por favor corrija los siguientes errores!
+              	<ul>
+              		<li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
+              	</ul>
+              </div>    
+                        
+              <div class="row">
+              
+                <div class="col-md-3"> 
+                  <div class="form-group">
+                    <label for="terminal">Terminal</label>
+                    <input type="hidden" th:field="*{id}"> <!-- tipo hidden no es visible y con field capturamos el valor, en este caso el id -->
+                    <select class="form-control" th:field="*{terminal.id}">
+	                    <option th:each="terminal : ${terminales}" th:value="${terminal.id}" th:text="${terminal.nombrePc}"> </option>
+	                      
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3"> 
+                  <div class="form-group">
+                    <label for="tipo">Tipo de Incidencia</label>
+                    <select class="form-control" th:field="*{tipo}" name="tipo" id="tipo">
+                       
+                      <option value="Falla">Falla</option>
+                      <option value="Mudanza">Mudanza</option>
+                      
+                    </select>
+                    
+                  </div> 
+                </div> 
+                
+                <div class="col-md-3"> 
+                  <div class="form-group">
+                    <label for="fechaInstalacion">Fecha</label>
+                    <input type="text" class="form-control" th:field="*{fechaReporte}" name="fechaReporte" id="fecha" placeholder="Dia de la Incidencia" required="required">
+                  </div>  
+                </div> 
+                   
+              </div>    
+              
+              <hr>
+              
+              <div class="row">
+                <div class="col-md-9"> 
+                  <div class="form-group">
+                    <label for="reporte"><strong>Descripci&oacute;n</strong></label>          
+                    <textarea class="form-control" th:field="*{reporte}" name="reporte" id="reporte" rows="7"></textarea>
+                  </div> 
+                </div> 
+              </div> 
+              
+              <button type="submit" class="btn btn-primary">Guardar</button>  
+              
+            </form>
+          </div>
+        </div>
+      </div> <!-- /container -->
+
+    </main>
+
+    <footer th:insert="fragments/footer :: pie-pagina" class="footer">
+      
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>    
+    <script th:src="@{/tinymce/tinymce.min.js}"></script>
+    <script>
+      
+      /*
+      
+      $(function () {
+          $("#fecha").datepicker({dateFormat: 'dd-mm-yy'});
+        }
+      );
+      
+       Funcion para activar el tinymce con JS 
+      tinymce.init({
+          selector: '#reporte',
+          plugins: "textcolor, table lists code",
+          toolbar: " undo redo | bold italic | alignleft aligncenter alignright alignjustify \n\
+                    | bullist numlist outdent indent | forecolor backcolor table code"
+      });
+      
+      */
+      
+    </script>
+  </body>
 </html>

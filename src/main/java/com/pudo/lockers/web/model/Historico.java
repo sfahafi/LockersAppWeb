@@ -13,9 +13,13 @@ public class Historico {
     private Integer id;
 	
     private String tipo;
+    
+    @Temporal(TemporalType.DATE)
     private Date fechaReporte;
     private String reporte;
-    private String solucuion;
+    private String solucion;
+    
+    @Temporal(TemporalType.DATE)
     private Date fechaSolucion;
     private String estatus;
     
@@ -56,12 +60,12 @@ public class Historico {
 		this.reporte = reporte;
 	}
 
-	public String getSolucuion() {
-		return solucuion;
+	public String getSolucion() {
+		return solucion;
 	}
 
-	public void setSolucuion(String solucuion) {
-		this.solucuion = solucuion;
+	public void setSolucion(String solucuion) {
+		this.solucion = solucuion;
 	}
 
 	public Date getFechaSolucion() {
@@ -92,7 +96,7 @@ public class Historico {
 	@Override
 	public String toString() {
 		return "Historico [id=" + id + ", tipo=" + tipo + ", fechaReporte=" + fechaReporte + ", reporte=" + reporte
-				+ ", solucuion=" + solucuion + ", fechaSolucion=" + fechaSolucion + ", estatus=" + estatus
+				+ ", solucion=" + solucion + ", fechaSolucion=" + fechaSolucion + ", estatus=" + estatus
 				+ ", terminal=" + terminal + "]";
 	}
     
