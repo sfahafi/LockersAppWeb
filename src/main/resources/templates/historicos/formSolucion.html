@@ -27,7 +27,7 @@
       <div class="container"> 
 
         <div class="card">
-          <h4 class="card-header"><strong>Datos de la Incidencia</strong></h4>              
+          <h4 class="card-header"><strong>Soluci&oacute;n de la Incidencia</strong></h4>              
           <div class="card-body">
             <form th:action="@{/historicos/save}" method="post" th:object="${historico}">
               
@@ -39,35 +39,13 @@
               	</ul>
               </div>    
                         
-              <div class="row">
+              <div class="row"> 
               
                 <div class="col-md-3"> 
                   <div class="form-group">
-                    <label for="terminal">Terminal</label>
-                    <input type="hidden" th:field="*{id}"> <!-- tipo hidden no es visible y con field capturamos el valor, en este caso el id -->
-                    <select class="form-control" th:field="*{terminal.id}">
-	                    <option th:each="terminal : ${terminales}" th:value="${terminal.id}" th:text="${terminal.nombrePc}"> </option>
-	                      
-                    </select>
-                  </div>
-                </div>
-                <div class="col-md-3"> 
-                  <div class="form-group">
-                    <label for="tipo">Tipo de Incidencia</label>
-                    <select class="form-control" th:field="*{tipo}" name="tipo" id="tipo">
-                       
-                      <option value="Falla">Falla</option>
-                      <option value="Mudanza">Mudanza</option>
-                      
-                    </select>
-                    
-                  </div> 
-                </div> 
-                
-                <div class="col-md-3"> 
-                  <div class="form-group">
-                    <label for="fechaReporte">Fecha</label>
-                    <input type="text" class="form-control" th:field="*{fechaReporte}" name="fechaReporte" id="fecha" placeholder="Dia de la Incidencia" required="required">
+                    <label for="fechaSolucion">Fecha</label>
+                    <input type="hidden" th:field="*{id}">
+                    <input type="text" class="form-control" th:field="*{fechaSolucion}" name="fechaSolucion" id="fecha" placeholder="Dia de la Soluci&oacute;n" required="required">
                   </div>  
                 </div> 
                    
@@ -78,8 +56,8 @@
               <div class="row">
                 <div class="col-md-9"> 
                   <div class="form-group">
-                    <label for="reporte"><strong>Descripci&oacute;n</strong></label>          
-                    <textarea class="form-control" th:field="*{reporte}" name="reporte" id="reporte" rows="7"></textarea>
+                    <label for="solucion"><strong>Soluci&oacute;n Descripci&oacute;n</strong></label>          
+                    <textarea class="form-control" th:field="*{solucion}" name="solucion" id="solucion" rows="7"></textarea>
                   </div> 
                 </div> 
               </div> 
