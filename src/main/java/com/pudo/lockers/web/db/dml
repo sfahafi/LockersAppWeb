@@ -23,6 +23,9 @@ insert into conectividades(idTerminal, internet, Fuente, chipCompani, chipNumero
 snModem, idTeamviewer, serialRouter, serialDvr, codigoDvr) values
     (2,'Cable','Local','Movistar_4G','8954079900004605983','NS','NS','1078239609','8951XQ1803220754','NS','NS');
     
+
+insert into historicos(idTerminal, tipo, fechaReporte, reporte, solucion, fechaSolucion,
+estatus) values (2,'Falla','2022-05-25','Equipo caido por falta de internet','Se conecto el equipo a cable de red local','2022-05-31','Resuelto');
   
 
 select * from terminales;
@@ -30,3 +33,5 @@ select * from terminales;
 select * from modulos;
 
 select * from conectividades;
+
+select * from historicos;
