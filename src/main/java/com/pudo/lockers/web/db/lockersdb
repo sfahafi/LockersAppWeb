@@ -80,7 +80,7 @@ create table historicos(
     tipo enum ('Falla','Mudanza') not null,
     fechaReporte date not null,
     reporte text not null,
-    solucuion text,
+    solucion text,
     fechaSolucion date,
     estatus enum('Pendiente','Resuelto') not null
 );
